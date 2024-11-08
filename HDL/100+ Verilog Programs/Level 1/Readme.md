@@ -2,7 +2,7 @@
 
 The testbench is provided to test all the designs expect a few that will be added in near feature.
 The testbenchh is in the file `level_1_tb.sv`. The `aux_tb.v` file is unnessary and does not affect any functionality.
-As it is now, there is `1600` test cases, taking roughly 530ns to complete.
+As it is now, there is `1600` test cases, taking roughly `530`ns to complete.
 
 1.  *AND Gate*
 
