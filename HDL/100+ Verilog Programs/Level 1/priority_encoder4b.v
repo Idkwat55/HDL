@@ -22,14 +22,17 @@
 //4 to 2 
 
 module priority_encoder4b(
-input a,b,c,d,
-output q1,q0
+    input wire a, b, c, d,
+    output reg q1, q0
     );
-    
-assign {q1,q0} = ({a,b,c,d} == 4'b0001 ) ? 2'b00 : 1'bx;
-assign {q1,q0} = ({a,b,c,d} == 4'b001x ) ? 2'b01 : 1'bx;
-assign {q1,q0} = ({a,b,c,d} == 4'b01xx ) ? 2'b10 : 1'bx;
-assign {q1,q0} = ({a,b,c,d} == 4'b1xxx ) ? 2'b11 : 1'bx;
 
-    
+    always @(*) begin
+        casez ({a, b, c, d}) // Use casez for wildcard matching
+            4'b1???: {q1, q0} = 2'b11; // 'a' has the highest priority
+            4'b01??: {q1, q0} = 2'b10; // 'b' has the next priority
+            4'b001?: {q1, q0} = 2'b01; // 'c' has the next priority
+            4'b0001: {q1, q0} = 2'b00; // 'd' has the lowest priority
+            default: {q1, q0} = 2'b00; // Default value
+        endcase
+    end
 endmodule

@@ -103,10 +103,10 @@ Here's a list of `100 Verilog designs` that progressively increase in complexity
 
 45.  *4-bit Sequence Detector (FSM)*
 
-46.  *Serial-to-Parallel Converter*
+46.  *Serial-to-Parallel Converter* 
 
 47.  *Parallel-to-Serial Converter*
-
+                                      
 48.  *4-bit Wallace Tree Multiplier*
 
 49.  *8-bit BCD Adder*
@@ -141,7 +141,7 @@ Here's a list of `100 Verilog designs` that progressively increase in complexity
 
 62.  *Single-Port RAM (SRAM)*
 
-63.  *FIFO (First-In, First-Out) Buffer*
+63.  *FIFO (First-In, First-Out) Buffer*    
 
 64.  *LIFO (Last-In, First-Out) Buffer*
 
