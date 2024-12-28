@@ -1,7 +1,10 @@
 # TCL Script for Vivado Simulation (xsim)
 
 # Set parameters
-cd {C:\Users\risik\Documents\Me\Project\100 program Level 2\100 program Level 2.srcs\sources_1\new}
+#cd {%userprofile%\Documents\Me\Project\100 program Level 2\100 program Level 2.srcs\sources_1\new}
+
+#use cd to set your working dir, an example is given above
+
 set module_name "grayCode_counter"
 set source_file {grayCode_counter.v}
 set clk_period_ns 1
