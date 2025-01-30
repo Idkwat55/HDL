@@ -1,5 +1,8 @@
+# Make sure you run this from inside vivado, you will get error if you run from standard tcl shell 
+
+
 puts "Running PRBS_G8b Test Script"
-cd {C:\Users\risik\Documents\Me\Project\Programs Level 3\Programs Level 3.srcs\sources_1\new}
+cd {-- Your working directory, where the .v file is present }
 set module_name "PRBS_G8b"
 set source_file {PRBS_G8b.v}
 set clk_period_ns 1
