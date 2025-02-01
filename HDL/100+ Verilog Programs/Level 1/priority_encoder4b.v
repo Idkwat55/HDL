@@ -1,38 +1,25 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08.11.2024 14:35:16
-// Design Name: 
-// Module Name: priority_encoder4b
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+// Risikesvar G 
+// GitHub: https://github.com/Idkwat55/HDL/tree/d3b77cc6cf7f21ce3c324b03d73e9c94be3db612/HDL/100%2B%20Verilog%20Programs/Level%201
 //////////////////////////////////////////////////////////////////////////////////
 
+`timescale 1ns / 1ps
 //4 to 2 
 
 module priority_encoder4b(
-    input wire a, b, c, d,
-    output reg q1, q0
-    );
+    input a,b,c,d,
+    output reg q1,q0
+);
 
-    always @(*) begin
-        casez ({a, b, c, d}) // Use casez for wildcard matching
-            4'b1???: {q1, q0} = 2'b11; // 'a' has the highest priority
-            4'b01??: {q1, q0} = 2'b10; // 'b' has the next priority
-            4'b001?: {q1, q0} = 2'b01; // 'c' has the next priority
-            4'b0001: {q1, q0} = 2'b00; // 'd' has the lowest priority
-            default: {q1, q0} = 2'b00; // Default value
+    always @(a or b or c or d) begin
+        casex ( {a, b, c, d} )
+            4'b1???: begin q1 = 1; q0 = 1; end
+            4'b01??: begin q1 = 1; q0 = 0; end
+            4'b001?: begin q1 = 0; q0 = 1; end
+            4'b0001: begin q1 = 0; q0 = 0; end
+            default: begin q1 = 1'bz; q0 = 1'bz; end
         endcase
     end
+
+
 endmodule

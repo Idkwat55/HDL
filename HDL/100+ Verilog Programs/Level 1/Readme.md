@@ -1,8 +1,9 @@
 ## Level 1 contains the following designs
 
 The testbench is provided to test all the designs expect a few that will be added in near feature.
-The testbenchh is in the file `level_1_tb.sv`. The `aux_tb.v` file is unnessary and does not affect any functionality.
-As it is now, there is `1600` test cases, taking roughly `530`ns to complete.
+The testbench is in the file `level_1_tb.sv`. The `aux_tb.v` file is unnessary and does not affect any functionality.
+As it is now, there are `1757` test cases, taking roughly `642`ns to complete.
+It is designed to test all cases, if you find any inconsistencies, please create new `issue` or `comment` or `discussion`.
 
 1.  *AND Gate*
 
