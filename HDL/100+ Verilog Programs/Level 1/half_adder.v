@@ -1,29 +1,15 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Risikesvar G 
+// GitHub: https://github.com/Idkwat55/HDL/tree/d3b77cc6cf7f21ce3c324b03d73e9c94be3db612/HDL/100%2B%20Verilog%20Programs/Level%201
+//////////////////////////////////////////////////////////////////////////////////
+
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05.11.2024 21:39:58
-// Design Name: 
-// Module Name: half_adder
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 
 module half_adder(
-input a,b, 
-output sum,carry
-    );
+    input a,b,
+    output sum,carry
+);
     assign sum = a ^ b;
     assign carry = a & b;
 endmodule
