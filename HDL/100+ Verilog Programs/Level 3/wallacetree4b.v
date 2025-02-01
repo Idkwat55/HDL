@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module wallacetree4b(
+module wallacetree4b_adder(
 input wire signed [3:0] a,b,
 output reg signed [7:0] p
 );

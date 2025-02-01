@@ -1,33 +1,20 @@
-`timescale 1ns / 1ps
+
+
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 06.11.2024 15:28:20
-// Design Name: 
-// Module Name: aux_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+// Risikesvar G 
+// GitHub: https://github.com/Idkwat55/HDL/tree/d3b77cc6cf7f21ce3c324b03d73e9c94be3db612/HDL/100%2B%20Verilog%20Programs/Level%201
 //////////////////////////////////////////////////////////////////////////////////
+ 
 
 `timescale 1ns / 1ps
 
 module propagate_adder_tb;
 
     // Testbench signals
-    reg [3:0] a, b;        // 4-bit inputs
-    reg cin;               // Carry-in
-    wire [3:0] sum;        // 4-bit sum output
-    wire carry;            // Carry-out
+    reg [3:0] a, b; // 4-bit inputs
+    reg cin; // Carry-in
+    wire [3:0] sum; // 4-bit sum output
+    wire carry; // Carry-out
 
     // Instantiate the propagate_adder (Unit Under Test)
     propagate_adder uut (

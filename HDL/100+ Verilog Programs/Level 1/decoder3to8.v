@@ -1,37 +1,30 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08.11.2024 14:35:16
-// Design Name: 
-// Module Name: decoder3to8
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+// Risikesvar G 
+// GitHub: https://github.com/Idkwat55/HDL/tree/d3b77cc6cf7f21ce3c324b03d73e9c94be3db612/HDL/100%2B%20Verilog%20Programs/Level%201
 //////////////////////////////////////////////////////////////////////////////////
 
 
+
 module decoder3to8(
-input a,b,c,
-output q0,q1,q2,q3,q4,q5,q6,q7
-    );
-    
-    assign q0 = ~a & ~b & ~c ;
-    assign q1 = ~a & ~b & c;
-    assign q2 = ~a & b & ~ c;
-    assign q3 = ~a & b & c;
-    assign q4 = a & ~b & ~c;
-    assign q5 = a & ~b & c;
-    assign q6 = a & b & ~c;
-    assign q7 = a & b & c;
-    
+    input wire a,b,c,
+    output wire q0,q1,q2,q3,q4,q5,q6,q7
+);
+    /*
+    Truth Table:
+    a b c | q0 q1 q2 q3 q4 q5 q6 q7
+    -------------------------------
+    0 0 0 |  1  0  0  0  0  0  0  0
+    0 0 1 |  0  1  0  0  0  0  0  0
+    0 1 0 |  0  0  1  0  0  0  0  0
+    0 1 1 |  0  0  0  1  0  0  0  0
+    1 0 0 |  0  0  0  0  1  0  0  0
+    1 0 1 |  0  0  0  0  0  1  0  0
+    1 1 0 |  0  0  0  0  0  0  1  0
+    1 1 1 |  0  0  0  0  0  0  0  1
+    */
+
+    assign {q7, q6, q5, q4, q3, q2, q1, q0} = 8'b00000001 << {a,b,c};
+
+
 endmodule
