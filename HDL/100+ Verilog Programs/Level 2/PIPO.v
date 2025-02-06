@@ -26,20 +26,19 @@
 // sl is not useful for pipo. PIPO is more of a buffer.
 
 module PIPO(
-input wire [3:0] d,
-input wire clk, rst_,   
-output reg [3:0] so
-    );
-    
+    input wire [3:0] d,
+    input wire clk, rst_,
+    output reg [3:0] so
+);
 
-always@(posedge clk or negedge rst_  )  begin
-if (!rst_  ) begin
-so <= 0;
-end
-else begin
 
-so <= d;
-end
-end
-    
+    always@(posedge clk or negedge rst_  )  begin
+        if (!rst_  ) begin
+            so <= 0;
+        end
+        else begin
+            so <= d;
+        end
+    end
+
 endmodule

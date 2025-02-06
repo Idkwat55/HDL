@@ -1,9 +1,17 @@
-## Level 2 : Programs
-The next set of `20` programs are listed below. Testbenches will be made after level 5. All programs are functional. 
+ ## Level 2 : Programs
 
-21. *4-bit Binary 	Counter*
+The next set of `20` programs are listed below.  You can find `cocotb` testbenches in the `tb` folder, and a `.sv` testbench for `counter.v`. Testbenches are provided for most designs, except for smaller testbenches. Example, `bin2gray.v` does not have testbench as the entire design is of a single line :
+>  assign  y  =  a  ^ (a  >>  1);
+
+  
+
+21.  *4-bit Binary Counter*
+
+  
 
 22.  *4-bit BCD Counter*
+
+  
 
   
 
@@ -11,7 +19,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 24.  *Shift Register (SIPO)*
+
+  
 
   
 
@@ -19,7 +31,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 26.  *Shift Register (SISO)*
+
+  
 
   
 
@@ -27,7 +43,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 28.  *Parity Generator*
+
+  
 
   
 
@@ -35,7 +55,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 30.  *Johnson Counter*
+
+  
 
   
 
@@ -43,7 +67,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 32.  *Binary to Gray Code Converter*
+
+  
 
   
 
@@ -51,7 +79,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 34.  *Multiplexed Display Controller (for 7-segment)*
+
+  
 
   
 
@@ -59,7 +91,11 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 36.  *Debouncer for Button Input*
+
+  
 
   
 
@@ -67,11 +103,17 @@ The next set of `20` programs are listed below. Testbenches will be made after l
 
   
 
+  
+
 38.  *Pulse Width Modulator (PWM) Generator*
 
   
 
+  
+
 39.  *Traffic Light Controller (Simple FSM)*
+
+  
 
   
 

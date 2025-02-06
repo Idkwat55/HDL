@@ -21,22 +21,21 @@
 
 
 module grayCode_counter(
-input wire clk,d,rst_,
-output reg [3:0] count
-    );
+    input wire clk,d,rst_,
+    output reg [3:0] count
+);
 
-reg [3:0] bin_count = 0;
+    reg [3:0] bin_count = 0;
 
-always@(posedge clk or negedge rst_) begin
-if(!rst_) begin
-count <= 0;
-bin_count <= 0;
-end
-else 
-bin_count <= bin_count + 1;
-end
-always@(bin_count) 
-count <= bin_count ^ ( bin_count >> 1);
+    always@(posedge clk or negedge rst_) begin
+        if(!rst_) begin
+            count <= 0;
+            bin_count <= 1;
+        end
+        else begin
+            bin_count <= bin_count + 1;
+            count <= bin_count ^ ( bin_count >> 1);
+        end
+    end
 
-    
 endmodule

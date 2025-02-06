@@ -16,7 +16,7 @@ module propagate_adder(
     // g_i  = a_i & b_i 
     // p_i  = a_i ^ b_i 
     // s_i  = p_i ^ c_i
-    // c_1+1= g_i | (c_i & p_i)
+    // c_i+1= g_i | (c_i & p_i)
 
     reg [2:0] i = 0 ;
     reg [3:0] g,p;
