@@ -1,12 +1,11 @@
 import os
-import sys
 from pathlib import Path
 
 
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import Timer
-from cocotb.log import logging
+
 from cocotb.runner import get_runner
 
 

@@ -1,9 +1,8 @@
 import os
-import sys
 from pathlib import Path
 
 import cocotb
-from cocotb.triggers import Timer, RisingEdge
+from cocotb.triggers import RisingEdge
 from cocotb.clock import Clock
 from cocotb.runner import get_runner
 from cocotb.log import logging

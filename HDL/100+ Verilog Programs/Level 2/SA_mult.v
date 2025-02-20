@@ -1,51 +1,49 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 19.11.2024 14:37:57
-// Design Name: 
-// Module Name: SA_mult
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+/*
+    Shift and Add Multiplier :
+    
+    - Given inputs a, b of any width, you wil produce an output of width max(a_width, b_width)
+    - Then you choose either a or b
+    - Suppose b is chosen, we iterate over each bit of b
+    - If current bit of b is 1, you add a to your product register
+    - Regardless of if current bit b is 1 or 0, you shift the number you chose to iterate over to the 'right', 
+        while you shift the other number to the left
+            
+    Note :
+    This is a simple multiplier, doesn't have any mechanism to handle input changes before valid output is produced
+*/
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module SA_mult(a,b,p);
-input wire  [7:0] a, b;
-output reg [15:0]p;
+    input wire  [7:0] a, b;
+    output reg [15:0]p;
 
-reg [15:0] a1,b1; 
+    reg [15:0] a1,b1;
 
-integer i;
-always @(*) begin
-p = {15'b0,0};
-a1 = {15'b0,a};
-b1 = b;
+    reg [3:0] i;
+    always @(a or b) begin
 
-for (i = 0; i<7;i = i +1) begin
+        p = {16{1'b0}};
+        a1 = {8'b0000_0000,a};
+        b1 = {8'b0000_0000,b};
 
-if (b1[0]==1) begin
-p = p + a1;
-a1 = a1<<1;
-b1 = b1>>1;
-end
-else begin
-a1 = a1<<1;
-b1 = b1>>1;
-end
+        for (i = 0; i < 8;i = i + 1) begin
 
-end
+            if (b1[0]==1) begin
+                p = p + a1;
+                a1 = a1<<1;
+                b1 = b1>>1;
+            end
+            else begin
+                a1 = a1<<1;
+                b1 = b1>>1;
+            end
 
-end 
+
+        end
+
+    end
 
 endmodule

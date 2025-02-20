@@ -21,9 +21,10 @@
 
 
 module UART_Rx(
-input wire Din, clk, rst_,
-output reg [7:0] Dout,
-output reg  Dvalid
+input wire din, clk, rst_,
+output reg [7:0] dout,
+output reg  dvalid,
+output reg busy
     );
   
 localparam start = 'b00;
@@ -43,12 +44,13 @@ reg [2:0] state;
     always@(posedge clk or negedge rst_) begin
     
     if (!rst_) begin
-    Dout <= 0;
-    Dvalid<=0;
+    dout <= 0;
+    dvalid<=0;
     state<=stop;
     bit_counter<=0;
     baud_counter<=0;
     data_reg<=0;
+    busy <=0;
     end
  
    else begin
@@ -56,8 +58,9 @@ reg [2:0] state;
     
     stop: begin
     bit_counter<= 0;
-    Dvalid <= 0;
-    if (Din == 0) begin
+    dvalid <= 0;
+    if (din == 0) begin
+      busy <= 1;
     baud_counter <= baud_counter + 1;
     if(baud_counter == half_rate) begin
     baud_counter <= 0;
@@ -78,13 +81,14 @@ reg [2:0] state;
     end
     
       receive: begin
-    data_reg[7]<= Din;
+    data_reg[7]<= din;
     baud_counter <= baud_counter + 1;
     if (baud_counter == baud_rate) begin
     if ( ( bit_counter + 1 )== bits_per_frame) begin
-    Dout <= data_reg;
-    Dvalid <= 1;
+    dout <= data_reg;
+    dvalid <= 1;
     state <= stop;
+    busy <= 0;
     end else
     data_reg <= data_reg >> 1;
     baud_counter <= 0;

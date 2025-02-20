@@ -40,7 +40,7 @@ output reg dout
         end
         if (en) begin
             case (period)
-                2'b00: tar_val = 'd500_000;
+                2'b00: tar_val = 'd50_000;
                 2'b01: tar_val = 'd100_000;
                 2'b10: tar_val = 'd200_000;
                 2'b11: tar_val = 'd500_000;
@@ -50,7 +50,7 @@ output reg dout
                 if (data == capt_data)
                     dout <= capt_data;
                 else 
-                    dout <= ~capt_data;
+                    dout <= dout;
             end
             else
                 counter <= counter+1;

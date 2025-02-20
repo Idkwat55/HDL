@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// 10Mhz - 10ns
+// 10Mhz - 100ns
 // 1.0ns,1.5ns,2.0ns,2.5ns,3.0ns,3.5ns,4.0ns,4.5ns,5.0ns,
 //5.5ns,6.0ns,6.5ns,7.0ns,7.5ns,8.0ns,8.5ns,9.0ns,9.5ns,10.0ns
 
@@ -27,26 +27,26 @@
 // First part is factored by 100_000 , second part, within block comments is original
 
 module pwm(
-input wire clk, rst_, en, inc, dec,
-output reg clk_out
-    );
-    
+    input wire clk, rst_, en, inc, dec,
+    output reg clk_out
+);
+
     reg [31:0] counter, targVal;
     reg [4:0] duty;
-    
+
     always@(posedge clk or negedge rst_) begin
         if(!rst_) begin
             clk_out <= 0;
             counter <= 0;
             duty <=10;
             targVal <=0;
-        end 
+        end
         if (en) begin
             if((inc && !dec) && duty < 20)
                 duty <= duty +1;
             else if((!inc && dec) && duty >1)
                 duty <= duty -  1;
-            case (duty)          
+            case (duty)
                 'd1: targVal = 'd5;
                 'd2: targVal =  'd10;
                 'd3: targVal = 'd15;
@@ -67,13 +67,13 @@ output reg clk_out
                 'd18: targVal = 'd90;
                 'd19: targVal = 'd95;
                 'd20: targVal = 'd100;
-                                //10000000
+                //10000000
                 default : targVal = 'd5000000;
             endcase
             if (counter <= targVal ) begin
                 clk_out <= 1;
                 counter <= counter + 1;
-            end 
+            end
             else begin
                 clk_out <=0;
                 counter <= counter + 1;
@@ -82,7 +82,7 @@ output reg clk_out
                 counter <= 0;
         end
     end
-    
+
 endmodule
 
 

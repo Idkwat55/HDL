@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
- 
+
 // sl - shift / load : if load (1) , d is allowed to interact with reg, else if shift (0) input doesnt get to reg, if there is a tmp reg, its content is read.
 
 
