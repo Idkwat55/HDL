@@ -1,5 +1,5 @@
  
- module UART_Tx(
+ module UART_Tx1(
  input wire [7:0] din,
  input wire clk, rst_, en, bt,
  output reg dout

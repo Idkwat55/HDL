@@ -18,43 +18,39 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-    // LSR, LSL, ASR, ASR, RR, RL 
+//  Modes :     LSR, LSL, ASR, ASR, RR, RL 
 
-module airthmeticshift_8b(
-input wire [7:0] din,
-input wire [2:0] mode,
-input wire  clk, rst_,
-output reg [7:0] dout
-    );
-  
+module shift_unit(
+    input wire [7:0] din,
+    input wire [2:0] mode,
+    input wire  clk, rst_,
+    output reg [7:0] dout
+);
+
     always@(posedge clk or negedge rst_) begin
         if (!rst_) begin
             dout <= 0;
         end
         else begin
             case (mode)
-                'b000: dout<= din[7:1];
-                'b001: dout<= din << 1;
-                'b010: begin
-                  
-                    dout <= {din[7],din[7:1]}; 
+                3'b000: dout<= din >> 1; // LSR Logical Shift Right
+                3'b001: dout<= din << 1; // LSL Logical Shift Left
+                3'b010: begin
+                    dout <= din >>> 1; // ASR Arithmetic Shift Right
                 end
-                'b011: begin
-                     
-                    dout <= {din[7], (din << 1)};
+                3'b011: begin
+                    dout <= din <<< 1; // ASL Arithmetic Shift Left
                 end
-                'b100: begin
-                     
-                    dout <= {din[0],(din>>1)}; 
+                3'b100: begin
+                    dout <= {din[0],{din>>1}[7:1]}; // Rotate Right
                 end
-                'b101: begin
-                    
-                    dout <= {(din>>1),din[7]}; 
+                3'b101: begin
+                    dout <= {{din>>1}[6:0],din[7]}; // Rotate Left
                 end
                 default:
-                    dout <= din;
+                dout <= din;
             endcase
         end
     end
-    
+
 endmodule

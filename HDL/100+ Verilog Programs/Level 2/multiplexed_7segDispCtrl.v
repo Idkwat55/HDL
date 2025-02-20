@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 19.11.2024 20:22:06
+// Create Date: 18.11.2024 20:22:06
 // Design Name: 
 // Module Name: multiplexed_7segDispCtrl
 // Project Name: 
@@ -24,25 +24,31 @@ module multiplexed_7segDispCtrl(
     input wire [1:0] sel,
     output reg [8:0] segDisp0, segDisp1, segDisp2, segDisp3
 );
-
+    // Based on
+    /*
+     * Common Anode 
+     */
     // Define 7-segment patterns as local parameters
-    localparam [8:0] ZERO  = 9'b111111000;  // 0
-    localparam [8:0] ONE   = 9'b011000000;  // 1
-    localparam [8:0] TWO   = 9'b110110100;  // 2
-    localparam [8:0] THREE = 9'b111100100;  // 3
-    localparam [8:0] FOUR  = 9'b011001100;  // 4
-    localparam [8:0] FIVE  = 9'b101101100;  // 5
-    localparam [8:0] SIX   = 9'b101111100;  // 6
-    localparam [8:0] SEVEN = 9'b111000000;  // 7
-    localparam [8:0] EIGHT = 9'b111111100;  // 8
-    localparam [8:0] NINE  = 9'b111101100;  // 9
-    localparam [8:0] TEN   = 9'b111011100;  // A
-    localparam [8:0] ELEVEN = 9'b001111100; // B
-    localparam [8:0] TWELVE = 9'b100111000; // C
-    localparam [8:0] THIRTEEN = 9'b011110100; // D
-    localparam [8:0] FOURTEEN = 9'b100111100; // E
-    localparam [8:0] FIFTEEN = 9'b100011100; // F
-    localparam [8:0] DEFAULT = 9'b000000000; // Default pattern (off)
+    //                           h=dp
+    //                              hgfedcba
+    localparam [7:0] ZERO      = 8'b11000000; // 0
+    localparam [7:0] ONE       = 8'b11111001; // 1
+    localparam [7:0] TWO       = 8'b10100100; // 2
+    localparam [7:0] THREE     = 8'b10110000; // 3
+    localparam [7:0] FOUR      = 8'b10011001; // 4
+    localparam [7:0] FIVE      = 8'b10010010; // 5
+    localparam [7:0] SIX       = 8'b10000010; // 6
+    localparam [7:0] SEVEN     = 8'b11111000; // 7
+    localparam [7:0] EIGHT     = 8'b10000000; // 8
+    localparam [7:0] NINE      = 8'b10010000; // 9
+    localparam [7:0] DEFAULT   = 8'b11111111; // Default pattern (off)
+    localparam [7:0] TEN       = 8'b11001000; // A
+    localparam [7:0] ELEVEN    = 8'b10000011; // B
+    localparam [7:0] TWELVE    = 8'b11000110; // C
+    localparam [7:0] THIRTEEN  = 8'b11000001; // D
+    localparam [7:0] FOURTEEN  = 8'b10000110; // E
+    localparam [7:0] FIFTEEN   = 8'b10001110; // F   
+
 
     // Function to map `data` to the appropriate segment pattern
     function [8:0] getSegmentPattern(input [4:0] data);
@@ -67,14 +73,16 @@ module multiplexed_7segDispCtrl(
         endcase
     endfunction
 
-    // Default values and assignments
-    always @(*) begin
+    initial begin
         // Initialize all displays to off
         segDisp0 = DEFAULT;
         segDisp1 = DEFAULT;
         segDisp2 = DEFAULT;
         segDisp3 = DEFAULT;
+    end
 
+    // Default values and assignments
+    always@(data or sel) begin
         // Select the active display and assign the correct pattern
         case (sel)
             2'b00: segDisp0 = getSegmentPattern(data);
